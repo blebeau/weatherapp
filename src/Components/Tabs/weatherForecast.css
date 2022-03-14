@@ -1,0 +1,31 @@
+.dailyForecast {
+    border: solid;
+    margin: 1%;
+}
+
+.dailyimg {
+    border: solid;
+    margin: 1%;
+}
+
+.today {
+    width: 20%;
+}
+
+.weatherForecast {
+    height: 50%;
+    /* border: 4px solid white; */
+}
+
+.img {
+    position: relative; 
+    margin: 1%;
+}
+
+.temperature {
+position: absolute; 
+top: 70%; 
+left: 0; 
+width: 100%;
+font-size: medium;
+}
