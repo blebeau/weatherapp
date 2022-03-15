@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WeatherForcast from "../WeatherForecast";
+import WeatherForcast from "../Weather/WeatherForecast";
 
 import TabNavigation from "./TabNavigation";
 import TabContent from "./TabContent";

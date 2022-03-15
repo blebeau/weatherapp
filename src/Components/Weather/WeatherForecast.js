@@ -1,5 +1,5 @@
 import React from "react";
-import './Tabs/weatherForecast.css';
+import './weatherForecast.css';
 
 const WeatherForcast = ({ weatherData }) => {
 
@@ -25,15 +25,20 @@ const WeatherForcast = ({ weatherData }) => {
     return (
         <div className="weatherForecast">
             <div className="dailyForecast">
-                <h3>Today</h3>
+                <h3 style={{ fontFamily: 'cursive, sans-serif' }}>Today</h3>
                 <div>
                     <img className="todayImg" alt="tomorrow" src={`http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}></img>
-                    <p className="tempToday">{(weatherData.current.temp - 273.15).toFixed(0)}°</p>
-                    <p className="statusToday">{weatherData.current.weather[0].main}</p>
+                    <div className="tempToday">
+                        <p>{(weatherData.current.temp - 273.15).toFixed(0)}°</p>
+                        <p>{weatherData.current.weather[0].main}</p>
+
+                    </div>
+
                 </div>
             </div>
 
             <div className="weekForecast" >
+                {/* Maps the next 4 days */}
                 {weatherData.daily.slice(0, 4).map((day, i) => (
                     <div key={i} className="img">
                         <p className="dayOfWeek">{displayDays[i]}</p>

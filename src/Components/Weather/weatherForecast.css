@@ -43,18 +43,11 @@
 
 .tempToday {
     position: absolute; 
-    top: 30%; 
+    top: 35%; 
     left: 35%; 
     width: 50%;
-    font-size: medium;
-}
-
-.statusToday {
-    position: absolute; 
-    top: 40%; 
-    left: 35%; 
-    width: 50%;
-    font-size: medium;
+    font-size: inherit;
+    font-family: cursive, sans-serif;
 }
 
 .dayOfWeek {
@@ -63,4 +56,5 @@
     left: 0; 
     width: 100%;
     font-size: medium;
+    font-family: cursive, sans-serif;
 }
