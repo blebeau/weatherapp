@@ -9,7 +9,6 @@ const TabNavigation = ({
 }) => {
     const handleClick = () => {
         setActiveTab(id);
-        console.log(id, id)
         if (id === 'tab1') {
             setLocation('lat=33.44&lon=-94.04')
         }

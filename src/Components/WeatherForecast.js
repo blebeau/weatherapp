@@ -2,7 +2,6 @@ import React from "react";
 import './Tabs/weatherForecast.css';
 
 const WeatherForcast = ({ weatherData }) => {
-    console.log('weatherData', weatherData)
 
     const today = new Date();
 
@@ -10,53 +9,42 @@ const WeatherForcast = ({ weatherData }) => {
 
     const day = Days[today.getDay()]
 
-    const index = Days.indexOf(day)
+    const index = Days.indexOf(day);
 
-    console.log('day', day)
-    console.log('index', index)
+    let displayDays = Days.slice(index + 1, index + 5);
+
+    let daysToAdd = []
+
+    // If the current day is Thursday or later, need to get 
+    // days from begining of the week
+    if (displayDays.length < 4) {
+        daysToAdd = Days.slice(0, 4 - displayDays.length);
+        displayDays = displayDays.concat(daysToAdd);
+    }
+
     return (
         <div className="weatherForecast">
-            <div >
+            <div className="dailyForecast">
                 <h3>Today</h3>
                 <div>
-                    <img className="today" alt="tomorrow" src={`http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}></img>
-                    <p>Current: {(weatherData.current.temp - 273.15).toFixed(2)}°</p>
+                    <img className="todayImg" alt="tomorrow" src={`http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}></img>
+                    <p className="tempToday">{(weatherData.current.temp - 273.15).toFixed(0)}°</p>
+                    <p className="statusToday">{weatherData.current.weather[0].main}</p>
                 </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", alignItems: "center" }} className="dailyForecast" >
-                <div className="img">
-                    <p>{Days[index + 1]}</p>
-                    <img
-                        className="dailyimg"
-                        alt="day4" src={`http://openweathermap.org/img/wn/${weatherData.daily[0].weather[0].icon}@2x.png`}>
-                    </img>
-                    <p className="temperature">{(weatherData.daily[0].temp.day - 273.15).toFixed(2)}°</p>
-                </div>
 
-                <div className="img">
-                    <p>{Days[index + 2]}</p>
-                    <img
-                        className="dailyimg"
-                        alt="day4" src={`http://openweathermap.org/img/wn/${weatherData.daily[1].weather[0].icon}@2x.png`}>
-                    </img>
-                    <p className="temperature">{(weatherData.daily[1].temp.day - 273.15).toFixed(2)}°</p>
-                </div>
-                <div className="img">
-                    <p>{Days[index + 3]}</p>
-                    <img
-                        className="dailyimg"
-                        alt="day4" src={`http://openweathermap.org/img/wn/${weatherData.daily[2].weather[0].icon}@2x.png`}>
-                    </img>
-                    <p className="temperature">{(weatherData.daily[2].temp.day - 273.15).toFixed(2)}°</p>
-                </div>
-                <div className="img">
-                    <p>{Days[index + 4]}</p>
-                    <img
-                        className="dailyimg"
-                        alt="day4" src={`http://openweathermap.org/img/wn/${weatherData.daily[3].weather[0].icon}@2x.png`}>
-                    </img>
-                    <p className="temperature">{(weatherData.daily[3].temp.day - 273.15).toFixed(2)}°</p>
-                </div>
+            <div className="weekForecast" >
+                {weatherData.daily.slice(0, 4).map((day, i) => (
+                    <div key={i} className="img">
+                        <p className="dayOfWeek">{displayDays[i]}</p>
+                        <img
+                            className="dailyimg"
+                            alt="day4" src={`http://openweathermap.org/img/wn/${weatherData.daily[0].weather[0].icon}@2x.png`}>
+                        </img>
+                        <p className="temperature">{(weatherData.daily[i].temp.day - 273.15).toFixed(0)}°</p>
+                    </div>
+                ))
+                }
             </div>
 
         </div>
